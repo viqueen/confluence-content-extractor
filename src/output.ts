@@ -6,7 +6,16 @@ export interface Output {
     blogs: string;
     attachments: string;
     home: string;
+    objectResolver: string;
+    assets: { avatars: string };
 }
+
+const makeOutputDirectories = (data: any) => {
+    for (const dir of Object.values(data)) {
+        if (typeof dir === 'string') fs.mkdirSync(dir, { recursive: true });
+        else makeOutputDirectories(dir);
+    }
+};
 
 const setup = (destination: string): Output => {
     const siteOutput = path.resolve(destination, 'site');
@@ -14,12 +23,14 @@ const setup = (destination: string): Output => {
         home: siteOutput,
         pages: path.resolve(siteOutput, 'pages'),
         blogs: path.resolve(siteOutput, 'blogs'),
-        attachments: path.resolve(siteOutput, 'attachments')
+        attachments: path.resolve(siteOutput, 'attachments'),
+        objectResolver: path.resolve(siteOutput, 'object-resolver'),
+        assets: {
+            avatars: path.resolve(siteOutput, 'assets', 'avatars')
+        }
     };
 
-    Object.values(output).forEach((directory) =>
-        fs.mkdirSync(directory, { recursive: true })
-    );
+    makeOutputDirectories(output);
 
     return output;
 };

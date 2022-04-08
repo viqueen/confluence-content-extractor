@@ -5,6 +5,8 @@ export interface Configuration {
     CONFLUENCE_USERNAME: string;
     CONFLUENCE_API_TOKEN: string;
     CONFLUENCE_SPACE: string;
+    TARGET_SITE: string;
+    CONFLUENCE_CLOUD_TOKEN: string;
 }
 
 const parsedConfig: unknown = dotenv.config().parsed!;
