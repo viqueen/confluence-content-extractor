@@ -1,7 +1,7 @@
 {
-  "name": "node-project",
+  "name": "confluence-content-extractor",
   "version": "1.0.0",
-  "description": "node project",
+  "description": "confluence content extractor",
   "scripts": {
     "build": "tsc --watch",
     "test": "jest --watchAll --collect-coverage",
@@ -18,18 +18,19 @@
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/viqueen/node-project.git"
+    "url": "git+ssh://git@github.com/viqueen/confluence-content-extractor.git"
   },
   "keywords": [
-    "node",
-    "project"
+    "confluence",
+    "content",
+    "extractor"
   ],
   "author": "Hasnae R.",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/viqueen/node-project/issues"
+    "url": "https://github.com/viqueen/confluence-content-extractor/issues"
   },
-  "homepage": "https://github.com/viqueen/node-project#readme",
+  "homepage": "https://github.com/viqueen/confluence-content-extractor#readme",
   "devDependencies": {
     "@types/jest": "^27.0.3",
     "@types/node": "^17.0.5",

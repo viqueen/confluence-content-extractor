@@ -1,4 +1,9 @@
-## node-project
+## confluence-content-extractor
+
+Library to extract structured content from Confluence with all the metadata and properties
+required for static site rendering.
+
+It resolves content and media assets for a given Confluence Space.
 
 ### environment
 
@@ -22,3 +27,4 @@ npm run ci:build
 npm run ci:test
 npm run format:check
 ```
+
