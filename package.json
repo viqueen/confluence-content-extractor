@@ -9,7 +9,7 @@
     "build": "tsc --watch",
     "test": "jest --watchAll --collect-coverage",
     "ci:build": "tsc",
-    "ci:test": "jest",
+    "ci:test": "jest --passWithNoTests",
     "format:check": "prettier --check .",
     "format": "prettier --check --write .",
     "check-updates": "npm-check-updates -u"
