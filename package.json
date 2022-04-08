@@ -2,6 +2,9 @@
   "name": "confluence-content-extractor",
   "version": "1.0.0",
   "description": "confluence content extractor",
+  "bin": {
+    "confsite": "dist/index.js"
+  },
   "scripts": {
     "build": "tsc --watch",
     "test": "jest --watchAll --collect-coverage",
@@ -42,6 +45,8 @@
     "typescript": "^4.5.4"
   },
   "dependencies": {
-    "dotenv": "^16.0.0"
+    "commander": "^9.1.0",
+    "dotenv": "^16.0.0",
+    "ts-node": "^10.7.0"
   }
 }
