@@ -19,6 +19,9 @@ const extractObjects = async (content: Content, output: Output) => {
 
     const resolvedObjects = await api.getObjects(inlineCards);
     resolvedObjects.forEach((item) => {
+        if (!item.body) {
+            return;
+        }
         const data = item.body.data;
         const { url, name, generator } = data;
         const definition = {
