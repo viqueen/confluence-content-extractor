@@ -8,6 +8,7 @@ export interface Output {
     home: string;
     objectResolver: string;
     assets: { avatars: string };
+    templates: string;
 }
 
 const makeOutputDirectories = (data: any) => {
@@ -27,7 +28,8 @@ const setup = (destination: string): Output => {
         objectResolver: path.resolve(siteOutput, 'object-resolver'),
         assets: {
             avatars: path.resolve(siteOutput, 'assets', 'avatars')
-        }
+        },
+        templates: path.resolve(destination, 'templates')
     };
 
     makeOutputDirectories(output);

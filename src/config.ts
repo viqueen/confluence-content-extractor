@@ -7,6 +7,7 @@ export interface Configuration {
     CONFLUENCE_SPACE: string;
     TARGET_SITE: string;
     CONFLUENCE_CLOUD_TOKEN: string;
+    TWITTER_SITE: string;
 }
 
 const parsedConfig: unknown = dotenv.config().parsed!;

@@ -7,6 +7,8 @@ import extractObjects from './extract-objects';
 import extractAttachments from './extract-attachments';
 import extractAssets from './extract-assets';
 import { scrubContent } from './confluence/adf-processor';
+import ReactDOMServer from 'react-dom/server';
+import { StaticWrapper } from './static-wrapper';
 
 const shouldExtractContentData = (
     content: Content,
@@ -67,6 +69,25 @@ const saveContentData = async (content: Content, output: Output) => {
     symlinkForInternals(content, output);
 };
 
+const saveContentHtml = async (content: Content, output: Output) => {
+    const indexHtml = ReactDOMServer.renderToStaticMarkup(
+        StaticWrapper(content)
+    );
+    const subPath = content.type === 'page' ? 'notes' : 'articles';
+    const templatePath = content.asHomepage
+        ? output.templates
+        : path.resolve(
+              output.templates,
+              subPath,
+              titleToPath(content.identifier.title)
+          );
+    fs.mkdirSync(templatePath, { recursive: true });
+    fs.writeFileSync(
+        path.resolve(templatePath, 'index.html'),
+        `<!DOCTYPE html>\n${indexHtml}`
+    );
+};
+
 const extractContent = async (content: Content, output: Output) => {
     if (shouldExtractContentData(content, output)) {
         console.info('▶️  extract content', content.identifier);
@@ -77,6 +98,9 @@ const extractContent = async (content: Content, output: Output) => {
     } else {
         console.log('⚡️  skipped data extraction', content.identifier);
     }
+
+    // static templates might change, this is not an expensive call anyway
+    await saveContentHtml(content, output);
 };
 
 export default extractContent;
