@@ -21,8 +21,8 @@ const setup = (destination: string): Output => {
     const siteOutput = path.resolve(destination, 'site');
     const output: Output = {
         home: siteOutput,
-        pages: path.resolve(siteOutput, 'pages'),
-        blogs: path.resolve(siteOutput, 'blogs'),
+        pages: path.resolve(siteOutput, 'notes'),
+        blogs: path.resolve(siteOutput, 'articles'),
         attachments: path.resolve(siteOutput, 'attachments'),
         objectResolver: path.resolve(siteOutput, 'object-resolver'),
         assets: {

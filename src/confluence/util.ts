@@ -20,11 +20,11 @@ const rewriteUrl = (url: string): string => {
     }
     const isBlog = url.match(blogUrl);
     if (isBlog) {
-        return `${config.TARGET_SITE}/blogs/${isBlog.groups?.id}/`;
+        return `${config.TARGET_SITE}/articles/${isBlog.groups?.id}/`;
     }
     const isPage = url.match(pageUrl);
     if (isPage) {
-        return `${config.TARGET_SITE}/pages/${isPage.groups?.id}/`;
+        return `${config.TARGET_SITE}/notes/${isPage.groups?.id}/`;
     }
     return url;
 };
