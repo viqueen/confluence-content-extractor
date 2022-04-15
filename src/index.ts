@@ -12,7 +12,7 @@ program
     .command('extract <spaceKey>')
     .description('extract all content and media from a confluence space')
     .action(async (spaceKey: string) => {
-        const outputDirectory = path.resolve(__dirname, '../output');
+        const outputDirectory = path.resolve(process.cwd(), 'output');
         const output = setup(outputDirectory);
         await extractSpace(spaceKey, output);
     });
@@ -21,7 +21,7 @@ program
     .command('extract-blogs <spaceKey>')
     .description('extract all blogs from a confluence space')
     .action(async (spaceKey: string) => {
-        const outputDirectory = path.resolve(__dirname, '../output');
+        const outputDirectory = path.resolve(process.cwd(), 'output');
         const output = setup(outputDirectory);
         await extractBlogs(spaceKey, output);
     });

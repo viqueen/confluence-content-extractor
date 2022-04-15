@@ -1,6 +1,6 @@
 {
   "name": "confluence-content-extractor",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "confluence content extractor",
   "bin": {
     "confsite": "dist/index.js"
