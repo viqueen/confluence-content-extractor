@@ -1,10 +1,10 @@
 import api, { Content } from './confluence/api';
-import { filter } from '@atlaskit/adf-utils';
 import { rewriteUrl } from './confluence/util';
 import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import { Output } from './output';
+import { filter } from '@atlaskit/adf-utils/traverse';
 
 const extractObjects = async (content: Content, output: Output) => {
     const inlineCards = filter(
