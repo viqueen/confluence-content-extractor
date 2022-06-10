@@ -8,6 +8,7 @@ export interface Configuration {
     TARGET_SITE: string;
     CONFLUENCE_CLOUD_TOKEN: string;
     TWITTER_SITE: string;
+    GA_TRACKING_ID: string;
 }
 
 const parsedConfig: unknown = dotenv.config().parsed!;

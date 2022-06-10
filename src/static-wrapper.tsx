@@ -14,6 +14,20 @@ const StaticWrapper = (content: Content) => {
         <meta name="twitter:title" content={content.identifier.title} />
         <meta name="twitter:description" content={content.excerpt} />
         <title>{content.identifier.title}</title>
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${config.GA_TRACKING_ID}`}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${config.GA_TRACKING_ID}');
+          `,
+          }}
+        />
       </head>
       <body>
         <div id="root" />
