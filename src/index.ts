@@ -26,5 +26,5 @@ program
         await extractBlogs(spaceKey, output);
     });
 
-program.version('1.0.0');
+program.version(require('../package.json').version);
 program.parse(process.argv);
