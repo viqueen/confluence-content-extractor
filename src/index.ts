@@ -3,8 +3,7 @@
 import { Command } from 'commander';
 import path from 'path';
 import { setup } from './output';
-import extractSpace from './extract-space';
-import extractBlogs from './extract-blogs';
+import { extractBlogs, extractSpace } from './extract';
 
 const program = new Command();
 

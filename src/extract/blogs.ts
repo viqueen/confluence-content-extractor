@@ -1,10 +1,10 @@
-import { Output } from './output';
-import api from './confluence/api';
+import { Output } from '../output';
+import api from '../confluence/api';
 import fs from 'fs';
 import path from 'path';
-import extractContent from './extract-content';
+import extractContent from './content';
 
-const extractBlogs = async (spaceKey: string, output: Output) => {
+export const extractBlogs = async (spaceKey: string, output: Output) => {
     console.info('📙  extract blogs');
     const blogs = await api.getSpaceBlogs(spaceKey);
 
@@ -19,5 +19,3 @@ const extractBlogs = async (spaceKey: string, output: Output) => {
         JSON.stringify(blogs)
     );
 };
-
-export default extractBlogs;

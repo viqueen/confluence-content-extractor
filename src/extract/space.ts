@@ -1,9 +1,9 @@
-import { Output } from './output';
-import extractBlogs from './extract-blogs';
-import api from './confluence/api';
-import extractPageTree from './extract-page-tree';
+import { Output } from '../output';
+import api from '../confluence/api';
+import { extractPageTree } from './page-tree';
+import { extractBlogs } from './blogs';
 
-const extractSpace = async (spaceKey: string, output: Output) => {
+export const extractSpace = async (spaceKey: string, output: Output) => {
     console.info(`🎬 action : extract confluence ${spaceKey} space content`);
 
     const homePageIdentifier = await api.getSpaceHomepage(spaceKey);
@@ -12,5 +12,3 @@ const extractSpace = async (spaceKey: string, output: Output) => {
     await extractPageTree(homePageIdentifier, output, true);
     await extractBlogs(spaceKey, output);
 };
-
-export default extractSpace;

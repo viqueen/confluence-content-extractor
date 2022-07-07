@@ -1,9 +1,9 @@
 import path from 'path';
 import fs from 'fs';
-import api, { Content } from './confluence/api';
-import { Output } from './output';
+import api, { Content } from '../confluence/api';
+import { Output } from '../output';
 
-const extractAttachments = async (content: Content, output: Output) => {
+export const extractAttachments = async (content: Content, output: Output) => {
     const attachments = content.attachments;
     if (!attachments) return Promise.resolve();
 
@@ -22,5 +22,3 @@ const extractAttachments = async (content: Content, output: Output) => {
         })
     );
 };
-
-export default extractAttachments;

@@ -1,12 +1,12 @@
-import api, { Content } from './confluence/api';
-import { rewriteUrl } from './confluence/util';
+import api, { Content } from '../confluence/api';
+import { rewriteUrl } from '../confluence/util';
 import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
-import { Output } from './output';
+import { Output } from '../output';
 import { filter } from '@atlaskit/adf-utils/traverse';
 
-const extractObjects = async (content: Content, output: Output) => {
+export const extractObjects = async (content: Content, output: Output) => {
     const inlineCards = filter(
         content.adfBody,
         (node) => node.type === 'inlineCard'
@@ -40,5 +40,3 @@ const extractObjects = async (content: Content, output: Output) => {
         );
     });
 };
-
-export default extractObjects;

@@ -1,9 +1,9 @@
 import path from 'path';
 import fs from 'fs';
-import api, { Content } from './confluence/api';
-import { Output } from './output';
+import api, { Content } from '../confluence/api';
+import { Output } from '../output';
 
-const extractAssets = async (content: Content, output: Output) => {
+export const extractAssets = async (content: Content, output: Output) => {
     const { author } = content;
     const avatarFile = path.resolve(
         output.assets.avatars,
@@ -21,5 +21,3 @@ const extractAssets = async (content: Content, output: Output) => {
     if (fs.existsSync(symlink)) return;
     fs.symlinkSync(avatarFile, symlink);
 };
-
-export default extractAssets;

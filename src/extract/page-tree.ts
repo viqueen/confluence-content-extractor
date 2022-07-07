@@ -1,8 +1,8 @@
-import api, { Identifier } from './confluence/api';
-import extractContent from './extract-content';
-import { Output } from './output';
+import api, { Identifier } from '../confluence/api';
+import { Output } from '../output';
+import extractContent from './content';
 
-const extractPageTree = async (
+export const extractPageTree = async (
     id: Identifier,
     output: Output,
     asHomepage = false
@@ -15,5 +15,3 @@ const extractPageTree = async (
         await extractPageTree(childId, output);
     }
 };
-
-export default extractPageTree;
