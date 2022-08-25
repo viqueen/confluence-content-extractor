@@ -3,6 +3,15 @@ import { Content } from './confluence/api';
 import { config } from './config';
 
 const StaticWrapper = (content: Content) => {
+    const withCover = () => {
+        if (!content.cover) return <></>;
+        return (
+            <meta
+                name="twitter:image"
+                content={`/attachments/${content.cover.fileId}`}
+            />
+        );
+    };
     return (
         <html lang="en">
             <head>
@@ -16,6 +25,7 @@ const StaticWrapper = (content: Content) => {
                 <meta name="twitter:site" content={config.TWITTER_SITE} />
                 <meta name="twitter:title" content={content.identifier.title} />
                 <meta name="twitter:description" content={content.excerpt} />
+                {withCover()}
                 <title>{content.identifier.title}</title>
                 <script
                     async
