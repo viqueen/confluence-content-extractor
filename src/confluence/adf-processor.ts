@@ -28,12 +28,21 @@ const mediaSingleProcessor = (node: ADFEntity) => {
     });
 };
 
+const emojiProcessor = (node: ADFEntity) => {
+    const attrs = node.attrs || {};
+    if (attrs.id === 'atlassian-check_mark')
+        return { type: node.type, attrs: { ...attrs, text: '✅' } };
+    if (attrs.id === 'atlassian-cross_mark')
+        return { type: node.type, attrs: { ...attrs, text: '❌' } };
+    return node;
+};
+
 const scrubContent = (doc: any) => {
     return scrubAdf(doc, {
         nodeReplacements: {
             bulletList: identityProcessor,
             codeBlock: identityProcessor,
-            emoji: identityProcessor,
+            emoji: emojiProcessor,
             expand: identityProcessor,
             extension: identityProcessor,
             heading: identityProcessor,
