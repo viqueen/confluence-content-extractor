@@ -88,7 +88,7 @@ const saveContentHtml = async (content: Content, output: Output) => {
     );
 };
 
-const extractContent = async (content: Content, output: Output) => {
+export const extractContent = async (content: Content, output: Output) => {
     if (shouldExtractContentData(content, output)) {
         console.info('▶️  extract content', content.identifier);
         await extractObjects(content, output);
@@ -102,5 +102,3 @@ const extractContent = async (content: Content, output: Output) => {
     // static templates might change, this is not an expensive call anyway
     await saveContentHtml(content, output);
 };
-
-export default extractContent;
