@@ -97,7 +97,7 @@ class Api {
     }
 
     async getContentById(
-        contentId: Identifier,
+        contentId: Pick<Identifier, 'id'>,
         asHomepage = false
     ): Promise<Content> {
         return this.getContent(`id=${contentId.id}`, asHomepage);

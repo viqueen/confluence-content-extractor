@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import ReactDOMServer from 'react-dom/server';
 import { Output } from '../output';
-import { Content } from '../confluence/api';
+import api, { Content, Identifier } from '../confluence/api';
 import { titleToPath } from '../confluence/util';
 import { scrubContent } from '../confluence/adf-processor';
 import { StaticWrapper } from '../static-wrapper';
@@ -101,4 +101,12 @@ export const extractContent = async (content: Content, output: Output) => {
 
     // static templates might change, this is not an expensive call anyway
     await saveContentHtml(content, output);
+};
+
+export const extractContentById = async (
+    { id }: Pick<Identifier, 'id'>,
+    output: Output
+) => {
+    const content = await api.getContentById({ id });
+    await extractContent(content, output);
 };

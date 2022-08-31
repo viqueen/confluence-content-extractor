@@ -3,7 +3,7 @@
 import { Command } from 'commander';
 import path from 'path';
 import { setup } from './output';
-import { extractBlogs, extractSpace } from './extract';
+import { extractBlogs, extractContentById, extractSpace } from './extract';
 
 const program = new Command();
 
@@ -23,6 +23,15 @@ program
         const outputDirectory = path.resolve(process.cwd(), 'output');
         const output = setup(outputDirectory);
         await extractBlogs(spaceKey, output);
+    });
+
+program
+    .command('extract-content <contentId>')
+    .description('extract specific content from a confluence space')
+    .action(async (contentId: string) => {
+        const outputDirectory = path.resolve(process.cwd(), 'output');
+        const output = setup(outputDirectory);
+        await extractContentById({ id: contentId }, output);
     });
 
 program.version(require('../package.json').version);
