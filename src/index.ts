@@ -28,10 +28,11 @@ program
 program
     .command('extract-content <contentId>')
     .description('extract specific content from a confluence space')
-    .action(async (contentId: string) => {
+    .option('-f, --force', 'force extraction', false)
+    .action(async (contentId: string, options) => {
         const outputDirectory = path.resolve(process.cwd(), 'output');
         const output = setup(outputDirectory);
-        await extractContentById({ id: contentId }, output);
+        await extractContentById({ id: contentId }, output, options);
     });
 
 program.version(require('../package.json').version);

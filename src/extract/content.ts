@@ -9,11 +9,15 @@ import { StaticWrapper } from '../static-wrapper';
 import { extractObjects } from './objects';
 import { extractAttachments } from './attachments';
 import { extractAssets } from './assets';
+import { extractEmojis } from './emojis';
 
 const shouldExtractContentData = (
     content: Content,
-    output: Output
+    output: Output,
+    options: { force: boolean }
 ): boolean => {
+    if (options.force) return true;
+
     const targetDirectory =
         content.type === 'page' ? output.pages : output.blogs;
     const dataFile = path.resolve(
@@ -88,12 +92,21 @@ const saveContentHtml = async (content: Content, output: Output) => {
     );
 };
 
-export const extractContent = async (content: Content, output: Output) => {
-    if (shouldExtractContentData(content, output)) {
+export type ExtractContentOptions = {
+    force: boolean;
+};
+
+export const extractContent = async (
+    content: Content,
+    output: Output,
+    options: ExtractContentOptions = { force: false }
+) => {
+    if (shouldExtractContentData(content, output, options)) {
         console.info('▶️  extract content', content.identifier);
         await extractObjects(content, output);
         await extractAttachments(content, output);
         await extractAssets(content, output);
+        await extractEmojis(content, output);
         await saveContentData(content, output);
     } else {
         console.log('⚡️  skipped data extraction', content.identifier);
@@ -105,8 +118,9 @@ export const extractContent = async (content: Content, output: Output) => {
 
 export const extractContentById = async (
     { id }: Pick<Identifier, 'id'>,
-    output: Output
+    output: Output,
+    options: ExtractContentOptions = { force: false }
 ) => {
     const content = await api.getContentById({ id });
-    await extractContent(content, output);
+    await extractContent(content, output, options);
 };
