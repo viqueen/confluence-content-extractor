@@ -7,7 +7,7 @@ export interface Output {
     attachments: string;
     home: string;
     objectResolver: string;
-    assets: { avatars: string };
+    assets: { avatars: string; emojis: string };
     templates: string;
 }
 
@@ -27,7 +27,8 @@ const setup = (destination: string): Output => {
         attachments: path.resolve(siteOutput, 'attachments'),
         objectResolver: path.resolve(siteOutput, 'object-resolver'),
         assets: {
-            avatars: path.resolve(siteOutput, 'assets', 'avatars')
+            avatars: path.resolve(siteOutput, 'assets', 'avatars'),
+            emojis: path.resolve(siteOutput, 'assets', 'emojis')
         },
         templates: path.resolve(destination, 'templates')
     };
