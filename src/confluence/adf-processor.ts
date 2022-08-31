@@ -35,10 +35,7 @@ const emojiProcessor = (node: ADFEntity) => {
     if (attrs.id === 'atlassian-cross_mark')
         return { type: node.type, attrs: { ...attrs, text: '❌' } };
     if (attrs.id === 'atlassian-question_mark')
-        return { type: node.type, attrs: { ...attrs, text: '⁉️' } };
-    if (attrs.id.startsWith('atlassian-')) {
-        console.info('** atlassian emoji', node);
-    }
+        return { type: node.type, attrs: { ...attrs, text: '❓' } };
     return node;
 };
 
